@@ -1,6 +1,8 @@
 package com.example.yhacks;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Fragment currentFragment;
     private FragmentManager fm;
+    private SharedPreferences sharedPref;
+    private String emailAddress, userToken;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -57,16 +61,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        currentFragment = new HomeFragment();
-        fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .replace(R.id.mainFragmentContainer, currentFragment)
-                .commit();
+        if(sharedPref.getInt(getString(R.string.user), 0) == 0){ //if no user
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+        } else {
+            //save user info for use in calls
+            emailAddress = sharedPref.getString("userEmailAddress", "");
+            userToken = sharedPref.getString(getString(R.string.token), "");
+
+            BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+            toolbar = (Toolbar)findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            currentFragment = new HomeFragment();
+            fm = getSupportFragmentManager();
+            fm.beginTransaction()
+                    .replace(R.id.mainFragmentContainer, currentFragment)
+                    .commit();
+        }
+
     }
 
     @Override
@@ -96,11 +112,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Go to Profile", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
-        //launch new activity w/ intent
-    }
-
-    public void onSettingsClick(MenuItem item) {
-        Toast.makeText(this, "Go to Settings", Toast.LENGTH_SHORT).show();
         //launch new activity w/ intent
     }
 

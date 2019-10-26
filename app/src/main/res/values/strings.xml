@@ -14,4 +14,8 @@
     <string name="monday_abbr">M</string>
     <string name="profile_activity" />
     <string name="title_search">Search</string>
+    <string name="preference_file_key">Shared Preferences</string>
+    <string name="token">API Token</string>
+    <string name="user">isThereAUser?</string>
+    <string name="name">Name of User</string>
 </resources>

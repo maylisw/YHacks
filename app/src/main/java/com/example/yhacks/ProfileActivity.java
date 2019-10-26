@@ -1,6 +1,7 @@
 package com.example.yhacks;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 
 public class ProfileActivity extends AppCompatActivity {
     private Toolbar toolbar;
+    private SharedPreferences sharedPref;
+    private String emailAddress, userToken;
 
     public ProfileActivity() {
 
@@ -24,6 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         toolbar = (Toolbar)findViewById(R.id.profileToolbar);
         setSupportActionBar(toolbar);
@@ -43,6 +48,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void wireWidgets() {
+        emailAddress = sharedPref.getString("userEmailAddress", "");
+        userToken = sharedPref.getString(getString(R.string.token), "");
 
     }
 
