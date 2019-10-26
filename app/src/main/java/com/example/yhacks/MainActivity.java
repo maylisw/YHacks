@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = new FriendsFragment();
                     break;
                 case R.id.navigation_notifications:
-                    currentFragment = new StudyGroup();
+                    currentFragment = new StudyGroupFragment();
                     break;
             }
             //transmits proper fragment

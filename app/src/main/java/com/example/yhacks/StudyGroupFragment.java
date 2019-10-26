@@ -10,13 +10,13 @@ import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
-public class StudyGroup extends android.support.v4.app.Fragment {
+public class StudyGroupFragment extends android.support.v4.app.Fragment {
     public static final String TAG = "fragments";
 
     private Context context;
     private View rootView;
 
-    public StudyGroup() {
+    public StudyGroupFragment() {
 
     }
 
