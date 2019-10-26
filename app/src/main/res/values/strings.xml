@@ -5,4 +5,12 @@
     <string name="title_notifications">Friends</string>
     <string name="profile_pic">User Profile</string>
     <string name="settings">Settings</string>
+    <string name="sunday_abbr">Su</string>
+    <string name="saturday_abbr">Sa</string>
+    <string name="friday_abbr">F</string>
+    <string name="thursday_abbr">Th</string>
+    <string name="wednesday_abbr">W</string>
+    <string name="tuesday_abbr">T</string>
+    <string name="monday_abbr">M</string>
+    <string name="profile_activity" />
 </resources>

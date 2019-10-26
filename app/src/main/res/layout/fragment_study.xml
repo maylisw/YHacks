@@ -5,40 +5,193 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditText
-        android:id="@+id/memberInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:text="Member"
-        android:visibility="visible"
-        tools:visibility="visible" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/departmentInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:text="Enter Department" />
+        <EditText
+            android:id="@+id/courseInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="5"
+            android:hint="Course Name"
+            android:inputType="text"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@+id/departmentInput"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <EditText
-        android:id="@+id/courseInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="5"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:text="Course Name" />
+        <EditText
+            android:id="@+id/departmentInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Department"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@+id/memberInput"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseInput" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
+        <EditText
+            android:id="@+id/memberInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="15"
+            android:hint="Member?"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/editText2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/departmentInput"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/addCourse"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Submit"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Time"
+            android:inputType="time"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/memberInput"
+            tools:text="@tools:sample/date/hhmm" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/addCourse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText2">
+
+            <ToggleButton
+                android:id="@+id/mondayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textAllCaps="true"
+                android:textOff="@string/monday_abbr"
+                android:textOn="@string/monday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/tuesdayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textOff="@string/tuesday_abbr"
+                android:textOn="@string/tuesday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/wednesdayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textOff="@string/wednesday_abbr"
+                android:textOn="@string/wednesday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/thursdayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textAllCaps="false"
+                android:textOff="@string/thursday_abbr"
+                android:textOn="@string/thursday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/Friday"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textOff="@string/friday_abbr"
+                android:textOn="@string/friday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/saturdayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textAllCaps="false"
+                android:textOff="@string/saturday_abbr"
+                android:textOn="@string/saturday_abbr" />
+
+            <ToggleButton
+                android:id="@+id/sundayButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:checked="false"
+                android:textAllCaps="false"
+                android:textOff="@string/sunday_abbr"
+                android:textOn="@string/sunday_abbr" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

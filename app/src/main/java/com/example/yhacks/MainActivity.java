@@ -1,5 +1,6 @@
 package com.example.yhacks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -17,26 +18,27 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private Toolbar toolbar;
+    private Fragment currentFragment;
+    private FragmentManager fm;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment currentFragment = null;
+            currentFragment = null;
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     currentFragment = new HomeFragment();
                     break;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_friends:
                     currentFragment = new FriendsFragment();
                     break;
-                case R.id.navigation_notifications:
+                case R.id.navigation_study:
                     currentFragment = new StudyGroupFragment();
                     break;
             }
             //transmits proper fragment
-            FragmentManager fm = getSupportFragmentManager();
             if (currentFragment != null) {
                 fm.beginTransaction()
                         .replace(R.id.mainFragmentContainer, currentFragment)
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        currentFragment = new HomeFragment();
+        fm = getSupportFragmentManager();
+        fm.beginTransaction()
+                .replace(R.id.mainFragmentContainer, currentFragment)
+                .commit();
     }
 
     @Override
@@ -66,8 +73,26 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        fm = getSupportFragmentManager();
+        if (currentFragment != null) {
+            fm.beginTransaction()
+                    .replace(R.id.mainFragmentContainer, currentFragment)
+                    .commit();
+        } else {
+            currentFragment = new HomeFragment();
+            fm.beginTransaction()
+                    .replace(R.id.mainFragmentContainer, currentFragment)
+                    .commit();
+        }
+        super.onBackPressed();
+    }
+
     public void onProfileClick(MenuItem item) {
         Toast.makeText(this, "Go to Profile", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
         //launch new activity w/ intent
     }
 
@@ -75,4 +100,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Go to Settings", Toast.LENGTH_SHORT).show();
         //launch new activity w/ intent
     }
+
+
 }
