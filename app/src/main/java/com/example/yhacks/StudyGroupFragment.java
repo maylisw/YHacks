@@ -15,6 +15,9 @@ public class StudyGroupFragment extends android.support.v4.app.Fragment {
 
     private Context context;
     private View rootView;
+    private EditText courseName;
+    private EditText department;
+    private EditText members;
 
     public StudyGroupFragment() {
 
@@ -30,6 +33,13 @@ public class StudyGroupFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_study, container, false);
         context = rootView.getContext();
+        wireWidgets();
         return rootView;
+    }
+
+    private void wireWidgets() {
+        courseName = rootView.findViewById(R.id.courseInput);
+        department = rootView.findViewById(R.id.departmentInput);
+        members = rootView.findViewById(R.id.memberInput);
     }
 }

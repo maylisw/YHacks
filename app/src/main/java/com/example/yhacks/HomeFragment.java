@@ -13,7 +13,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
         private Context context;
         private View rootView;
-
+        private android.support.v7.widget.RecyclerView homeList;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,11 @@ public class HomeFragment extends android.support.v4.app.Fragment {
                 Bundle savedInstanceState) {
             rootView = inflater.inflate(R.layout.fragment_home, container, false);
             context = rootView.getContext();
+            wireWidgets();
             return rootView;
+        }
+
+        private void wireWidgets() {
+            homeList = rootView.findViewById(R.id.homeList);
         }
 }
