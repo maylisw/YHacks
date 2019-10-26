@@ -42,7 +42,7 @@ public class StudyGroupFragment extends android.support.v4.app.Fragment {
     private void wireWidgets() {
         courseName = rootView.findViewById(R.id.courseInput);
         department = rootView.findViewById(R.id.departmentInput);
-        members = rootView.findViewById(R.id.memberInput);
+        members = rootView.findViewById(R.id.locationInput);
         submit = rootView.findViewById(R.id.addCourse);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
