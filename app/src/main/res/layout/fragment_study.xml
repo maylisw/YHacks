@@ -17,7 +17,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="5"
+            android:ems="10"
             android:hint="Course Name"
             android:inputType="text"
             android:singleLine="true"
@@ -25,6 +25,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
@@ -39,25 +40,25 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             android:hint="Department"
             android:inputType="textPersonName"
             android:singleLine="true"
-            app:layout_constraintBottom_toTopOf="@+id/memberInput"
+            app:layout_constraintBottom_toTopOf="@+id/locationInput"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseInput" />
 
         <EditText
-            android:id="@+id/memberInput"
+            android:id="@+id/locationInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="15"
-            android:hint="Member?"
+            android:ems="10"
+            android:hint="Location"
             android:inputType="textPersonName"
             android:singleLine="true"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
+            app:layout_constraintBottom_toTopOf="@+id/time1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/departmentInput"
@@ -80,20 +81,20 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/time1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="-8dp"
             android:layout_marginBottom="8dp"
-            android:ems="10"
+            android:ems="5"
             android:hint="Time"
             android:inputType="time"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/time2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/memberInput"
+            app:layout_constraintTop_toBottomOf="@+id/locationInput"
             tools:text="@tools:sample/date/hhmm" />
 
         <LinearLayout
@@ -108,7 +109,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             app:layout_constraintBottom_toTopOf="@+id/addCourse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2">
+            app:layout_constraintTop_toBottomOf="@+id/time1">
 
             <ToggleButton
                 android:id="@+id/mondayButton"
@@ -191,6 +192,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:textOn="@string/sunday_abbr" />
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="5"
+            android:inputType="time"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/time1"
+            app:layout_constraintTop_toBottomOf="@+id/locationInput" />
 
     </android.support.constraint.ConstraintLayout>
 

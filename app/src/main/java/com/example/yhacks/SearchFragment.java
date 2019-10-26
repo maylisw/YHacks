@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends android.support.v4.app.Fragment {
+public class SearchFragment extends android.support.v4.app.Fragment {
     private GroupDisplayAdapter groupsDisplayAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Context context;
@@ -19,7 +19,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     private android.support.v7.widget.RecyclerView homeListRecyclerView;
     private ArrayList<StudyGroup> studyGroupsList;
 
-    public HomeFragment() {
+    public SearchFragment() {
 
     }
 
@@ -31,7 +31,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        rootView = inflater.inflate(R.layout.fragment_search, container, false);
         context = rootView.getContext();
         getGroups();
         wireWidgets();
@@ -44,8 +44,8 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     }
 
     private void wireWidgets() {
-        homeListRecyclerView = rootView.findViewById(R.id.homeList);
-        layoutManager = new GridLayoutManager(getActivity(), 1);
+        homeListRecyclerView = rootView.findViewById(R.id.searchList);
+        layoutManager = new GridLayoutManager(getActivity(), 2);
         homeListRecyclerView.setLayoutManager(layoutManager);
         homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
         groupsDisplayAdapter = new GroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
