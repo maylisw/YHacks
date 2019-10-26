@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Create Study Group</string>
     <string name="title_notifications">Friends</string>
+    <string name="profile_pic">User Profile</string>
+    <string name="settings">Settings</string>
 </resources>
