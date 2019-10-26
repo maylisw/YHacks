@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     currentFragment = new HomeFragment();
                     break;
+                case R.id.navigation_search:
+                    //currentFragment = new SearchFragment();
+                    break;
                 case R.id.navigation_friends:
                     currentFragment = new FriendsFragment();
                     break;
