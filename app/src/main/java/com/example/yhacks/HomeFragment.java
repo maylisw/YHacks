@@ -35,7 +35,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         context = rootView.getContext();
         getGroups();
         wireWidgets();
-        return rootView;//
+        return rootView;
     }
 
     private void getGroups() {

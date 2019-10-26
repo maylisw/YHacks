@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/mainFragmentContainer"
         app:menu="@menu/toolbar"
-        app:titleTextColor="@android:color/black"/>
+        app:titleTextColor="@android:color/white"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
