@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ public class SetUpAccount extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private String emailAddress, userToken;
     private EditText profileName, profileYear, profileMajor;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,10 @@ public class SetUpAccount extends AppCompatActivity {
         setContentView(R.layout.activity_set_up_account);
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        toolbar = (Toolbar)findViewById(R.id.set_up_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         wireWidgets();
     }

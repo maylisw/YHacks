@@ -32,6 +32,9 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        toolbar = (Toolbar)findViewById(R.id.toolbar_create_account);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         wireWidgets();
     }
@@ -50,16 +53,16 @@ public class CreateAccount extends AppCompatActivity {
                 if(firstNameInput == null || firstNameInput.equals("")) {
                     Toast.makeText(CreateAccount.this, "Please Enter a First Name", Toast.LENGTH_SHORT).show();
                 }
-                if(lastNameInput == null || lastNameInput.equals("")) {
+                else if(lastNameInput == null || lastNameInput.equals("")) {
                     Toast.makeText(CreateAccount.this, "Please Enter a Last Name", Toast.LENGTH_SHORT).show();
                 }
-                if(emailInput == null || emailInput.equals("")) {
+                else if(emailInput == null || emailInput.equals("")) {
                     Toast.makeText(CreateAccount.this, "Please Enter an Email Address", Toast.LENGTH_SHORT).show();
                 }
-                if(passInput == null || passInput.equals("")) {
+                else if(passInput == null || passInput.equals("")) {
                     Toast.makeText(CreateAccount.this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();
                 }
-                if(confirmPassword()){
+                else if(confirmPassword()){
                     //todo api request
 //                    BackendlessUser user = new BackendlessUser();
 //                    //                    user.setProperty("name", firstNameInput.getText().toString() + " " + miInput.getText().toString()+". "+lastNameInput.getText().toString());

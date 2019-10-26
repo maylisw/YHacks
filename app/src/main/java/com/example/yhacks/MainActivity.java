@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
+        thereIsUser = 0;
 
-        if(sharedPref.getInt(getString(R.string.user), 0) == 0){ //if no user
+        if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
             startActivity(i);
         } else {

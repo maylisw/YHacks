@@ -40,7 +40,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
     private void getGroups() {
         studyGroupsList = new ArrayList<>();
-        studyGroupsList.add(new StudyGroup());
+        //studyGroupsList.add(new StudyGroup());
     }
 
     private void wireWidgets() {
