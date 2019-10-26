@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">YHacks</string>
+    <string name="app_name">Study Buddy</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Create Study Group</string>
+    <string name="title_notifications">Friends</string>
 </resources>
