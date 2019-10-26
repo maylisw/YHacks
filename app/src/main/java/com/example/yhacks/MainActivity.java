@@ -3,6 +3,8 @@ package com.example.yhacks;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -16,17 +18,28 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment currentFragment = null;
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    currentFragment = new HomeFragment();
+                    break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    currentFragment = new FriendsFragment();
+                    break;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    currentFragment = new StudyGroup();
+                    break;
             }
+            //transmits proper fragment
+            FragmentManager fm = getSupportFragmentManager();
+            if (currentFragment != null) {
+                fm.beginTransaction()
+                        .replace(R.id.mainFragmentContainer, currentFragment)
+                        .commit();
+                return true;
+            }
+            return false;
             return false;
         }
     };
