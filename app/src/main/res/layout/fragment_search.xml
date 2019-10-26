@@ -6,29 +6,39 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/friendsListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/searchInput">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/searchList"
-                android:layout_width="400dp"
-                android:layout_height="729dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 tools:layout_editor_absoluteX="1dp"
                 tools:layout_editor_absoluteY="1dp" />
         </LinearLayout>
     </ScrollView>
+
+    <SearchView
+        android:id="@+id/searchInput"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

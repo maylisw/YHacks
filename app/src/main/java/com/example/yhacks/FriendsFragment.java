@@ -6,13 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 public class FriendsFragment extends android.support.v4.app.Fragment {
     public FriendsFragment() {
     }
         private Context context;
         private View rootView;
-        private EditText userSearch;
+        private SearchView userSearch;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         }
 
     private void wireWidgets() {
-            userSearch = rootView.findViewById(R.id.searchFriends);
+            userSearch = rootView.findViewById(R.id.friendsInput);
     }
 }
 

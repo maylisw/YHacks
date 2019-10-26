@@ -44,10 +44,21 @@ public class CreateAccount extends AppCompatActivity {
         passInput = (EditText) findViewById(R.id.password_editText);
         confirmPassInput = (EditText) findViewById(R.id.password_confirm_editText);
 
-        //todo make sure all of these have been filled out
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(firstNameInput == null || firstNameInput.equals("")) {
+                    Toast.makeText(CreateAccount.this, "Please Enter a First Name", Toast.LENGTH_SHORT).show();
+                }
+                if(lastNameInput == null || lastNameInput.equals("")) {
+                    Toast.makeText(CreateAccount.this, "Please Enter a Last Name", Toast.LENGTH_SHORT).show();
+                }
+                if(emailInput == null || emailInput.equals("")) {
+                    Toast.makeText(CreateAccount.this, "Please Enter an Email Address", Toast.LENGTH_SHORT).show();
+                }
+                if(passInput == null || passInput.equals("")) {
+                    Toast.makeText(CreateAccount.this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();
+                }
                 if(confirmPassword()){
                     //todo api request
 //                    BackendlessUser user = new BackendlessUser();

@@ -7,81 +7,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/classTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Class Title"
-        app:layout_constraintBottom_toTopOf="@+id/date"
-        tools:layout_editor_absoluteX="64dp" />
+        <TextView
+            android:id="@+id/classTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="198dp"
+            android:layout_marginBottom="16dp"
+            android:text="Class Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:ems="5"
-        android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/time"
-        app:layout_constraintStart_toStartOf="@+id/classTitle"
-        tools:layout_editor_absoluteY="259dp" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="days"
+            app:layout_constraintBottom_toTopOf="@+id/location"
+            app:layout_constraintEnd_toStartOf="@+id/time"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/classTitle"
+            app:layout_constraintTop_toBottomOf="@+id/classTitle" />
 
-    <EditText
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="5"
-        android:inputType="time"
-        app:layout_constraintStart_toEndOf="@+id/date"
-        tools:layout_editor_absoluteY="259dp" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Location"
+            app:layout_constraintBottom_toTopOf="@+id/department"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
 
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Location"
-        app:layout_constraintTop_toBottomOf="@+id/date"
-        tools:layout_editor_absoluteX="64dp" />
+        <TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="274dp"
+            android:layout_marginBottom="16dp"
+            android:text="department"
+            app:layout_constraintBottom_toTopOf="@+id/numPeople"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location" />
 
-    <EditText
-        android:id="@+id/department"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Department"
-        app:layout_constraintTop_toBottomOf="@+id/location"
-        tools:layout_editor_absoluteX="64dp" />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="274dp"
+            android:layout_marginBottom="16dp"
+            android:text="time"
+            app:layout_constraintBottom_toTopOf="@+id/location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date"
+            app:layout_constraintTop_toBottomOf="@+id/classTitle" />
 
-    <EditText
-        android:id="@+id/numGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Number of People in Group"
-        app:layout_constraintTop_toBottomOf="@+id/department"
-        tools:layout_editor_absoluteX="64dp" />
+        <TextView
+            android:id="@+id/numPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="193dp"
+            android:layout_marginBottom="331dp"
+            android:text="Number of People Going"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/department" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"
-        tools:layout_editor_absoluteX="318dp"
-        tools:layout_editor_absoluteY="343dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="290dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="385dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_black_32dp" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

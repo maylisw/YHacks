@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /*
 Initial screen seen when opening app
@@ -48,6 +49,12 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(emailInput == null || emailInput.equals("")) {
+                    Toast.makeText(Login.this, "Please Enter an Email Address", Toast.LENGTH_SHORT).show();
+                }
+                if(passwordInput == null || passwordInput.equals((""))) {
+                    Toast.makeText(Login.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
+                }
                 //todo call api login request
                 // updates stored app info
                 //todo update

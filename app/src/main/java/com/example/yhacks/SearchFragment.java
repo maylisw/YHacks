@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class SearchFragment extends android.support.v4.app.Fragment {
     private GroupDisplayAdapter groupsDisplayAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SearchView searchInput;
     private Context context;
     private View rootView;
     private android.support.v7.widget.RecyclerView homeListRecyclerView;
@@ -44,6 +46,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
     }
 
     private void wireWidgets() {
+        searchInput = rootView.findViewById(R.id.searchInput);
         homeListRecyclerView = rootView.findViewById(R.id.searchList);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         homeListRecyclerView.setLayoutManager(layoutManager);

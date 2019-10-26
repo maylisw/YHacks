@@ -97,6 +97,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             app:layout_constraintTop_toBottomOf="@+id/locationInput"
             tools:text="@tools:sample/date/hhmm" />
 
+        <EditText
+            android:id="@+id/time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="5"
+            android:inputType="time"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/time1"
+            app:layout_constraintTop_toBottomOf="@+id/locationInput" />
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
@@ -192,21 +207,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:textOn="@string/sunday_abbr" />
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/time2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="5"
-            android:inputType="time"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/time1"
-            app:layout_constraintTop_toBottomOf="@+id/locationInput" />
 
     </android.support.constraint.ConstraintLayout>
 
