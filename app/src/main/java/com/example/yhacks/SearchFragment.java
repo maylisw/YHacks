@@ -41,14 +41,13 @@ public class SearchFragment extends android.support.v4.app.Fragment {
     }
 
     private void getGroups() {
-        studyGroupsList = new ArrayList<>();
-        studyGroupsList.add(new StudyGroup());
+
     }
 
     private void wireWidgets() {
         searchInput = rootView.findViewById(R.id.searchInput);
         homeListRecyclerView = rootView.findViewById(R.id.searchList);
-        layoutManager = new GridLayoutManager(getActivity(), 2);
+        layoutManager = new GridLayoutManager(getActivity(), 1);
         homeListRecyclerView.setLayoutManager(layoutManager);
         homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
         groupsDisplayAdapter = new GroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)

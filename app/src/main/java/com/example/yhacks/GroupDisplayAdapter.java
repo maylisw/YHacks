@@ -14,7 +14,6 @@ public class GroupDisplayAdapter extends RecyclerView.Adapter<GroupDisplayAdapte
 
     public GroupDisplayAdapter(ArrayList<StudyGroup> passedGroupList, Context context) {
         groupsList = passedGroupList;
-        //instance vars
     }
 
     @Override
