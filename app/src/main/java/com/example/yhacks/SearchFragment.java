@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 public class SearchFragment extends android.support.v4.app.Fragment {
-    private GroupDisplayAdapter groupsDisplayAdapter;
+    private SearchGroupDisplayAdapter searchGroupsDisplayAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SearchView searchInput;
     private Context context;
@@ -41,17 +41,18 @@ public class SearchFragment extends android.support.v4.app.Fragment {
     }
 
     private void getGroups() {
-
+        studyGroupsList = new ArrayList<>();
+        studyGroupsList.add(new StudyGroup("erin", "1004", "COMS", "M 3:00 4:00, T 2:30 3:45", "Columbia", "Pupin 1029", 3, 7, 5));
     }
 
     private void wireWidgets() {
-        searchInput = rootView.findViewById(R.id.searchInput);
+        //searchInput = rootView.findViewById(R.id.searchInput);
         homeListRecyclerView = rootView.findViewById(R.id.searchList);
         layoutManager = new GridLayoutManager(getActivity(), 1);
         homeListRecyclerView.setLayoutManager(layoutManager);
         homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        groupsDisplayAdapter = new GroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
-        homeListRecyclerView.setAdapter(groupsDisplayAdapter);
+        searchGroupsDisplayAdapter = new SearchGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
+        homeListRecyclerView.setAdapter(searchGroupsDisplayAdapter);
         registerForContextMenu(homeListRecyclerView);
     }
 
