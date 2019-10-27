@@ -42,7 +42,62 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
 
         private void getGroups() {
             friendsList = new ArrayList<>();
-            friendsList.add(new User("erin", "Columbia", "1004, 2342", "COMS", "multi", "img", "eem23234", "23242", "32432", "14323", "13423", "13423"));
+            friendsList.add(new User(
+                    "Erin McNulty",
+                    "Columbia University",
+                    "Introduction to Computer Science, Multivariable Calculus, General Chemistry",
+                    "2023",
+                    "Computer Science",
+                    "CS",
+                    "Multi",
+                    "img",
+                    "eem2188@columbia.edu",
+                    "14323",
+                    "13423",
+                    "13423")
+            );
+            friendsList.add(new User(
+                    "Angel Garcia",
+                    "Columbia University",
+                    "Introduction to Computer Science, Physics, Calculus",
+                    "2023",
+                    "Computer Science",
+                    "Chemistry",
+                    "Physics",
+                    "23242",
+                    "32432",
+                    "14323",
+                    "13423",
+                    "13423")
+            );
+            friendsList.add(new User(
+                    "Julia McDonald",
+                    "Columbia University",
+                    "Literature in Humanities, University Writing, Economics",
+                    "2023",
+                    "Economics",
+                    "Math",
+                    "History",
+                    "23242",
+                    "32432",
+                    "14323",
+                    "13423",
+                    "13423")
+            );
+            friendsList.add(new User(
+                    "Jared Matthews",
+                    "Columbia University",
+                    "Honors Math, Advanced Economics",
+                    "2020",
+                    "Mathematics",
+                    "Math",
+                    "Economics",
+                    "23242",
+                    "32432",
+                    "14323",
+                    "13423",
+                    "13423")
+            );
         }
 
         private void wireWidgets() {

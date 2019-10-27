@@ -42,7 +42,39 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
     private void getGroups() {
         studyGroupsList = new ArrayList<>();
-        studyGroupsList.add(new StudyGroup("erin", "1004", "COMS", "M 3:00 4:00, T 2:30 3:45", "Columbia", "Pupin 1029", 3, 7, 5));
+        studyGroupsList.add(new StudyGroup(
+                "Introduction to Computer Science Midterm",
+                "1004",
+                "COMS",
+                "M 3:00 4:00, T 2:30 3:45",
+                "Columbia",
+                "Pupin 1029",
+                3,
+                7,
+                5)
+        );
+        studyGroupsList.add(new StudyGroup(
+                "Physics Homework",
+                "1601",
+                "PHYS",
+                "W 3:00 4:00, TH 2:30 3:45",
+                "Columbia",
+                "Butler 1029",
+                3,
+                7,
+                5)
+        );
+        studyGroupsList.add(new StudyGroup(
+                "Chemistry Quiz",
+                "1400",
+                "CHEM",
+                "F 3:00 4:00, S 2:30 3:45",
+                "Columbia",
+                "Havermeyer 109",
+                3,
+                7,
+                5)
+        );
     }
 
     private void wireWidgets() {

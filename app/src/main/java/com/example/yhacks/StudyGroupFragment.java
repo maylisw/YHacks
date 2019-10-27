@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
-import java.util.ArrayList;
 
 public class StudyGroupFragment extends android.support.v4.app.Fragment {
     public static final String TAG = "fragments";
@@ -18,7 +17,9 @@ public class StudyGroupFragment extends android.support.v4.app.Fragment {
     private Context context;
     private View rootView;
     private EditText courseName, department, location, time1, time2;
+    private String totalTimes;
     private Button submit;
+    private ToggleButton mondayButton, tuesdayButton, wednesdayButton, thursdayButton, fridayButton, saturdayButton, sundayButton;
 
     public StudyGroupFragment() {
 
@@ -44,7 +45,100 @@ public class StudyGroupFragment extends android.support.v4.app.Fragment {
         location = rootView.findViewById(R.id.locationInput);
         time1 = rootView.findViewById(R.id.time1);
         time2 = rootView.findViewById(R.id.time2);
+        totalTimes = time1.getText().toString() + " - " + time2.getText().toString();
         submit = rootView.findViewById(R.id.addCourse);
+        mondayButton = rootView.findViewById(R.id.mondayButton);
+        tuesdayButton = rootView.findViewById(R.id.tuesdayButton);
+        wednesdayButton = rootView.findViewById(R.id.wednesdayButton);
+        thursdayButton = rootView.findViewById(R.id.thursdayButton);
+        fridayButton = rootView.findViewById(R.id.fridayButton);
+        saturdayButton = rootView.findViewById(R.id.saturdayButton);
+        sundayButton = rootView.findViewById(R.id.sundayButton);
+
+        mondayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        tuesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        wednesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        thursdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        fridayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        saturdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
+        sundayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_on));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.weekday_toggle_circle_off));
+                }
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

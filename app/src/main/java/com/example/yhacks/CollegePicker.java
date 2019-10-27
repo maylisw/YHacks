@@ -64,7 +64,38 @@ public class CollegePicker extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         universityList = new ArrayList<>();
         //todo make query to get list of UNis
-        universityList.add(new University("Columbia University in the City of New York", "New York, New York", 0));
+        universityList.add(new University(
+                "Columbia University in the City of New York",
+                "New York, New York",
+                0));
+        universityList.add(new University(
+                "Yale University",
+                "New Haven, Connecticut",
+                0));
+        universityList.add(new University(
+                "Princeton University",
+                "Princeton, New Jersey",
+                0));
+        universityList.add(new University(
+                "Harvard University",
+                "Cambridge, Massachusetts",
+                0));
+        universityList.add(new University(
+                "University of Pennsylvania",
+                "Philadelphia, Pennsylvania",
+                0));
+        universityList.add(new University(
+                "Dartmouth College",
+                "Hanover, New Hampshire",
+                0));
+        universityList.add(new University(
+                "Cornell University",
+                "Ithaca, New York",
+                0));
+        universityList.add(new University(
+                "Massachusetts Institute of Technology",
+                "Cambridge, Massachusetts",
+                0));
         wireWidgets();
     }
 

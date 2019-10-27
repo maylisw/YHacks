@@ -52,7 +52,6 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.My
             super(itemView);
             name = itemView.findViewById(R.id.uni_name);
             city = itemView.findViewById(R.id.uni_city);
-
         }
     }
 }

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private String emailAddress, userToken;
     private List<StudyGroup> myGroups;
+    private List<User> friends;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -71,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myGroups = new ArrayList<>();
+        friends = new ArrayList<>();
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
-
+        thereIsUser = 1;
         if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
             startActivity(i);
@@ -141,6 +143,17 @@ public class MainActivity extends AppCompatActivity {
             StudyGroup sg = myGroups.get(i);
             if(sg.getId() == studyGroup.getId()){
                 myGroups.remove(i);
+            }
+        }
+    }
+
+    public void addFriend(User friend) { friends.add(friend); }
+
+    public void removeFriend(User friend) {
+        for(int i = 0; i < friends.size(); i++){
+            User f = friends.get(i);
+            if(f.getId() == friend.getId()){
+                friends.remove(i);
             }
         }
     }
