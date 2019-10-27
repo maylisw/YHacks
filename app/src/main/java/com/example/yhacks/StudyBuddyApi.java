@@ -16,21 +16,28 @@ import retrofit2.http.Query;
  */
 
 public interface StudyBuddyApi {
-    String baseURL = "https://www.mystudybuddy.tech";
-
-    @GET("api/v1/users")
-    Call<User> getAllUsers();
-
-//    @POST("api/v1/users")
-//    Call<User> registerUser(@Body User U);
+    String baseURL = "https://www.mystudybuddy.tech/api/v1/";
 
     @FormUrlEncoded
-    @POST("/api/v1/users")
-    Call<User>  registerUser(
+    @POST("users")
+    Call<User> registerUser(
             @Field("email") String email,
             @Field("name") String name,
             @Field("university") String university,
             @Field("password") String password,
             @Field("password_confirmation") String passwordConfirmation
     );
+
+    
+
+    @FormUrlEncoded
+    @POST("sessions")
+    Call<User> login(
+            @Field("email") String email,
+            @Field("password") String password
+    );
+
+
+
+
 }

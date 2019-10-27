@@ -78,12 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
 
-        Call<User> call = api.registerUser("angel@gmail.com", "Angel Garcia", "Columbia University", "password", "password");
+        Call<User> call = api.login("angel@gmail.com", "passwor");
         call.enqueue(new Callback<User>() {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.d(TAG, "onResponse: response");
                 Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
             }
 
