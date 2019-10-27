@@ -43,5 +43,5 @@ public class University {
                 "name='" + name + "'" +
                 "city='" + city + "'" +
                 "}";
-    }
+     }
 }
