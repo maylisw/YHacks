@@ -1,6 +1,8 @@
 package com.example.yhacks;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,7 +18,7 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private Context context;
     private View rootView;
-    private android.support.v7.widget.RecyclerView searchListRecyclerView;
+    private android.support.v7.widget.RecyclerView homeListRecyclerView;
     private ArrayList<StudyGroup> studyGroupsList;
 
     public HomeFragment() {
@@ -44,13 +46,32 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     }
 
     private void wireWidgets() {
-        searchListRecyclerView = rootView.findViewById(R.id.homeList);
+        homeListRecyclerView = rootView.findViewById(R.id.homeList);
         layoutManager = new GridLayoutManager(getActivity(), 1);
-        searchListRecyclerView.setLayoutManager(layoutManager);
-        searchListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        homeListRecyclerView.setLayoutManager(layoutManager);
+        homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
         homeGroupDisplayAdapter = new HomeGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
-        searchListRecyclerView.setAdapter(homeGroupDisplayAdapter);
-        registerForContextMenu(searchListRecyclerView);
+        homeListRecyclerView.setAdapter(homeGroupDisplayAdapter);
+
+        homeListRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, homeListRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @SuppressLint("RestrictedApi")
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        //todo start intent
+                        Intent i = new Intent(context, StudyGroupInfo.class);
+                        startActivity(i);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                    }
+                })
+        );
+
+        registerForContextMenu(homeListRecyclerView);
     }
 
 }

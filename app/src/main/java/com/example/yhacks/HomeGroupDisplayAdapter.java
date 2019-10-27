@@ -2,12 +2,14 @@ package com.example.yhacks;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDisplayAdapter.MyViewHolder> {
     private List<StudyGroup> studyGroups;
     private Context context;
+    private static final String TAG = "HomeGroupDisplayAdapter";
 
     public HomeGroupDisplayAdapter(List<StudyGroup> group, Context context) {
         this.studyGroups = group;
@@ -34,6 +37,10 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
     @Override
     public void onBindViewHolder(@NonNull HomeGroupDisplayAdapter.MyViewHolder holder, int i) {
         StudyGroup group = studyGroups.get(i);
+        final MainActivity mainActivity = (MainActivity) context;
+        if(mainActivity.inMyGroups(group)){
+            holder.addCourseButton.setChecked(true);
+        }
         group.setTimeDate();
         String timeDateStr = "";
         Log.d("AG", "onBindViewHolder: "+group.getName());
@@ -45,6 +52,25 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
         }
         holder.schedule.setText(timeDateStr);
         holder.location.setText(group.getLocation());
+
+        if(holder.addCourseButton.isChecked()){
+            holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
+        }
+
+        final int j = i;
+        holder.addCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){ //already in group
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.toggle_circle_on));
+                    mainActivity.removeGroup(studyGroups.get(j));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.toggle_circle_off));
+                    mainActivity.addGroup(studyGroups.get(j));
+                }
+            }
+        });
     }
 
 
@@ -55,13 +81,15 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView name, course, subject, schedule, location;
+        private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.friendName);
             course = itemView.findViewById(R.id.year);
             subject = itemView.findViewById(R.id.department);
-            schedule = itemView.findViewById(R.id.major);
-            location = itemView.findViewById(R.id.goodAt);
+            schedule = itemView.findViewById(R.id.schedule);
+            location = itemView.findViewById(R.id.location);
+            addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }
 }

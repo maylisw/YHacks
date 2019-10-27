@@ -12,20 +12,23 @@ public class User {
     private String email;
     private String authToken;
     private String password;
-    private String passwordConfirmation;
+    private String password_confirmation;
+    private String year;
+    private String major;
 
-    public User(String name, String university, String classes, String goodAt, String needsHelpWith, String profilePicture, String email, String authToken, int id) {
-        this.id                   = id;
-        this.name                 = name;
-        this.university           = university;
-        this.classes              = classes;
-        this.goodAt               = goodAt;
-        this.needsHelpWith        = needsHelpWith;
-        this.profilePicture       = profilePicture;
-        this.email                = email;
-        this.authToken            = authToken;
-        this.password             = password;
-        this.passwordConfirmation = passwordConfirmation;
+    public User(String name, String university, String classes, String year, String major, String goodAt, String needsHelpWith, String profilePicture, String email, String authToken, String password, String password_confirmation) {
+        this.name                  = name;
+        this.university            = university;
+        this.classes               = classes;
+        this.goodAt                = goodAt;
+        this.year                  = year;
+        this.major                 = major;
+        this.needsHelpWith         = needsHelpWith;
+        this.profilePicture        = profilePicture;
+        this.email                 = email;
+        this.authToken             = authToken;
+        this.password              = password;
+        this.password_confirmation = password_confirmation;
     }
 
     public String getName() {
@@ -101,11 +104,11 @@ public class User {
     }
 
     public String getPasswordConfirmation() {
-        return passwordConfirmation;
+        return password_confirmation;
     }
 
     public void setPasswordConfirmation(String passwordConfirmation) {
-        this.passwordConfirmation = passwordConfirmation;
+        this.password_confirmation = password_confirmation;
     }
 
     public int getId() {
@@ -114,6 +117,30 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassword_confirmation() {
+        return password_confirmation;
+    }
+
+    public void setPassword_confirmation(String password_confirmation) {
+        this.password_confirmation = password_confirmation;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String toString() {
@@ -128,7 +155,7 @@ public class User {
                 "email='" + email + "'" +
                 "good_at='" + goodAt + "'" +
                 "password='" + password + "'" +
-                "password_confirmation='" + passwordConfirmation + "'" +
+                "password_confirmation='" + password_confirmation + "'" +
                 "}";
     }
 }

@@ -16,13 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private SharedPreferences sharedPref;
     private String emailAddress, userToken;
+    private List<StudyGroup> myGroups;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,26 +70,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myGroups = new ArrayList<>();
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(StudyBuddyApi.baseURL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
-//
-//        Call<User> call = api.getAllUsers();
-//        call.enqueue(new Callback<User>() {
-//
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t){
-//                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(StudyBuddyApi.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
+
+        Call<User> call = api.registerUser("angel@gmail.com", "Angel Garcia", "Columbia University", "password", "password");
+        call.enqueue(new Callback<User>() {
+
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d(TAG, "onResponse: response");
+                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t){
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
@@ -145,5 +149,32 @@ public class MainActivity extends AppCompatActivity {
         //launch new activity w/ intent
     }
 
+    public List<StudyGroup> getMyGroups(){
+        return myGroups;
+    }
 
+    public void addGroup(StudyGroup studyGroup){
+        myGroups.add(studyGroup);
+    }
+
+    public void removeGroup(StudyGroup studyGroup){
+        //todo make effcient lol
+        for(int i = 0; i < myGroups.size(); i++){
+            StudyGroup sg = myGroups.get(i);
+            if(sg.getId() == studyGroup.getId()){
+                myGroups.remove(i);
+            }
+        }
+    }
+
+    public boolean inMyGroups(StudyGroup group) {
+        //todo make effcient
+        for(int i = 0; i < myGroups.size(); i++){
+            StudyGroup sg = myGroups.get(i);
+            if(sg.getId() == group.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
