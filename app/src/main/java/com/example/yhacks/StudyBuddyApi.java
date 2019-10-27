@@ -33,4 +33,5 @@ public interface StudyBuddyApi {
             @Field("password") String password,
             @Field("password_confirmation") String passwordConfirmation
     );
+
 }

@@ -84,7 +84,7 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
         private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.friendName);
+            name = itemView.findViewById(R.id.name);
             course = itemView.findViewById(R.id.year);
             subject = itemView.findViewById(R.id.department);
             schedule = itemView.findViewById(R.id.schedule);

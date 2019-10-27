@@ -85,8 +85,8 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
             name = itemView.findViewById(R.id.friendName);
             course = itemView.findViewById(R.id.year);
             subject = itemView.findViewById(R.id.department);
-            schedule = itemView.findViewById(R.id.schedule);
-            location = itemView.findViewById(R.id.location);
+            //schedule = itemView.findViewById(R.id.schedule);
+            //location = itemView.findViewById(R.id.location);
             addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }
