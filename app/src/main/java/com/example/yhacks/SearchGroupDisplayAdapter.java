@@ -44,13 +44,15 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         String timeDateStr = "";
         Log.d("AG", "onBindViewHolder: "+group.getName());
         holder.name.setText(group.getName());
-        holder.course.setText(group.getCourse());
-        holder.subject.setText(group.getSubject());
+        holder.course.setText("Course: " + group.getCourse());
+        holder.subject.setText("Department " + group.getSubject());
 //        for(int j = 0; j<group.getDate().length; j++) {
 //            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
 //        }
-        holder.schedule.setText(timeDateStr);
-        holder.location.setText(group.getLocation());
+        holder.schedule.setText("Schedule: " + timeDateStr);
+        holder.location.setText("Location: " + group.getLocation());
+        holder.userCount.setText(group.getUserCount() + " members have already joined");
+
 
         if(holder.addCourseButton.isChecked()){
             holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
@@ -79,7 +81,7 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView name, course, subject, schedule, location;
+        private TextView name, course, subject, schedule, location, userCount;
         private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +90,7 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
             subject = itemView.findViewById(R.id.department);
             schedule = itemView.findViewById(R.id.schedule);
             location = itemView.findViewById(R.id.location);
+            userCount = itemView.findViewById(R.id.numPeople);
             addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }
