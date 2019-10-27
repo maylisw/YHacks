@@ -17,9 +17,9 @@ import retrofit2.http.Query;
 
 public interface StudyBuddyApi {
     String baseURL = "https://www.mystudybuddy.tech/api/v1/";
-
+    //""
     @FormUrlEncoded
-    @POST("users")
+    @POST("registrations/register")
     Call<User> registerUser(
             @Field("email") String email,
             @Field("name") String name,
