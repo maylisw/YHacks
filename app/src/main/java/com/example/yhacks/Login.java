@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /*
 Initial screen seen when opening app
  */
@@ -55,19 +61,34 @@ public class Login extends AppCompatActivity {
                 if(passwordInput == null || passwordInput.equals((""))) {
                     Toast.makeText(Login.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
                 }
-                //todo call api login request
-                // updates stored app info
-                //todo update w/ api recieved tokens
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(getString(R.string.token), "TOKEN HERE");
-                editor.putString("userEmailAddress", emailInput.getText().toString());
-                editor.putInt(getString(R.string.user), 1); //means there is a saved user
-                //todo get users editor.putString(getString(R.string.name), firstNameInput + " " + lastNameInput);
-                editor.commit();
+                 Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(StudyBuddyApi.baseURL)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
 
-                //Starts Main Activity
-                Intent i = new Intent(Login.this, MainActivity.class);
-                startActivity(i);
+                Call<User> call = api.login(emailInput.getText().toString(), passwordInput.getText().toString());
+                call.enqueue(new Callback<User>() {
+
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString(getString(R.string.token), response.body().getAuthToken());
+                        editor.putString("userEmailAddress", response.body().getEmail());
+                        editor.putString(getString(R.string.name), response.body().getName());
+                        editor.putInt(getString(R.string.user), 1); //means there is a saved user
+                        editor.commit();
+
+                        //Starts Main Activity
+                        Intent i = new Intent(Login.this, MainActivity.class);
+                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t){
+                        Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         });

@@ -72,29 +72,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myGroups = new ArrayList<>();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(StudyBuddyApi.baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
-
-        Call<User> call = api.login("angel@gmail.com", "passwor");
-        call.enqueue(new Callback<User>() {
-
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t){
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
-        thereIsUser = 1;
 
         if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
@@ -176,4 +155,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
 }

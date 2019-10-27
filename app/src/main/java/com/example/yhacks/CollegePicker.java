@@ -15,11 +15,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CollegePicker extends AppCompatActivity {
 
@@ -32,11 +41,20 @@ public class CollegePicker extends AppCompatActivity {
     private FloatingActionButton finishSetUp;
     private int selected;
     private Context context;
+    private String email, name, university, password, year, major;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college_picker);
+        Intent orgin = getIntent();
+        name = orgin.getStringExtra("name");
+        email = orgin.getStringExtra("email");
+        password = orgin.getStringExtra("password");
+        year = orgin.getStringExtra("year");
+        major = orgin.getStringExtra("major");
+
+        //todo get items passed from last activity
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
@@ -45,12 +63,12 @@ public class CollegePicker extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         universityList = new ArrayList<>();
+        //todo make query to get list of UNis
         universityList.add(new University("Columbia University in the City of New York", "New York, New York", 0));
         wireWidgets();
     }
 
     private void wireWidgets() {
-        //todo get university list + have a fill in your own
         final int backgroundColor = getResources().getColor(R.color.backgroundColor);
         selected = -1;
         context = this;
@@ -60,8 +78,43 @@ public class CollegePicker extends AppCompatActivity {
         finishSetUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, MainActivity.class);
-                startActivity(i);
+                university = universityList.get(selected).getName();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(StudyBuddyApi.baseURL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
+
+                Call<User> call = api.registerUser(email, name, university, password, password, major, year);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+                        Log.d("stuff", "onResponse: "+response.body().toString());
+
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString(getString(R.string.token), response.body().getAuthToken());
+                        editor.putString("userEmailAddress", response.body().getEmail());
+                        editor.putString(getString(R.string.name), response.body().getName());
+                        editor.putInt(getString(R.string.user), 1); //means there is a saved user
+                        editor.commit();
+
+                        try {
+                            Toast.makeText(CollegePicker.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        Intent i = new Intent(context, MainActivity.class);
+                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(CollegePicker.this, t.getMessage(), Toast.LENGTH_LONG);
+                    }
+                });
             }
         });
 

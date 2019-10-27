@@ -48,8 +48,8 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         for(int j = 0; j<group.getDate().length; j++) {
             timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
         }
-        holder.schedule.setText(timeDateStr);
-        holder.location.setText(group.getLocation());
+//        holder.schedule.setText(timeDateStr);
+//        holder.location.setText(group.getLocation());
 
         if(holder.addCourseButton.isChecked()){
             holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
@@ -82,7 +82,7 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.friendName);
+            //name = itemView.findViewById(R.id.friendName);
             course = itemView.findViewById(R.id.year);
             subject = itemView.findViewById(R.id.department);
             //schedule = itemView.findViewById(R.id.schedule);

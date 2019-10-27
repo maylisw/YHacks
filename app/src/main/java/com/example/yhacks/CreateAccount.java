@@ -1,37 +1,29 @@
 package com.example.yhacks;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+
 
 /*
 Has user make new account; linked from New Account button in LoginScreen
  */
 public class CreateAccount extends AppCompatActivity {
 
-    private EditText firstNameInput, lastNameInput, emailInput, passInput, confirmPassInput;
+    private EditText firstNameInput, lastNameInput, emailInput, passInput, confirmPassInput, profileYear, profileMajor;
+    private String name, email, pass, confirmPass, year, major;
     private Button createAccount;
     private Toolbar toolbar;
-    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
-        sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         toolbar = (Toolbar)findViewById(R.id.toolbar_create_account);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -46,6 +38,8 @@ public class CreateAccount extends AppCompatActivity {
         emailInput = (EditText) findViewById(R.id.email_editText);
         passInput = (EditText) findViewById(R.id.password_editText);
         confirmPassInput = (EditText) findViewById(R.id.password_confirm_editText);
+        profileYear = findViewById(R.id.profileYear);
+        profileMajor = findViewById(R.id.profileMajor);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,37 +55,24 @@ public class CreateAccount extends AppCompatActivity {
                 }
                 else if(passInput == null || passInput.equals("")) {
                     Toast.makeText(CreateAccount.this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();
+                } else if(profileYear == null || profileYear.equals("")) {
+                    Toast.makeText(CreateAccount.this, "PleaseEnter a valid year", Toast.LENGTH_SHORT).show();
+                }
+                else if(profileMajor == null || profileMajor.equals("")) {
+                    Toast.makeText(CreateAccount.this, "PleaseEnter a valid major", Toast.LENGTH_SHORT).show();
                 }
                 else if(confirmPassword()){
-                    //todo api request
-//                    BackendlessUser user = new BackendlessUser();
-//                    //                    user.setProperty("name", firstNameInput.getText().toString() + " " + miInput.getText().toString()+". "+lastNameInput.getText().toString());
-//                    user.setProperty("name", firstNameInput.getText().toString() + " "+lastNameInput.getText().toString());
-//                    user.setProperty("email", emailInput.getText().toString());
-//                    user.setProperty("password", passInput.getText().toString());
-//                    user.setProperty("username", usernameInput.getText().toString());
-//                    user.setProperty("updatedsetup", false);
-//                    Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
-//                        @Override
-//                        public void handleResponse(BackendlessUser response) {
-//                            String username = (String) response.getProperty("username");
-//                            Toast.makeText(CreateAccount.this, "Welcome " +username+", please confirm your email before logging in.", Toast.LENGTH_LONG).show();
-//                        }
-//
-//                        @Override
-//                        public void handleFault(BackendlessFault fault) {
-//                            Toast.makeText(CreateAccount.this, fault.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-                    //todo update sharedPref
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(getString(R.string.token), "TOKEN HERE");
-                    editor.putString("userEmailAddress", emailInput.getText().toString());
-                    editor.putString(getString(R.string.name), firstNameInput + " "+lastNameInput);
-                    editor.putInt(getString(R.string.user), 1); //means there is a saved user
-                    editor.commit();
-
-                    Intent i = new Intent(CreateAccount.this, SetUpAccount.class);
+                    Intent i = new Intent(CreateAccount.this, CollegePicker.class);
+                    name = firstNameInput.getText().toString() + lastNameInput.getText().toString();
+                    email = emailInput.getText().toString();
+                    pass = passInput.getText().toString();
+                    year = profileYear.getText().toString();
+                    major = profileMajor.getText().toString();
+                    i.putExtra("name", name);
+                    i.putExtra("email", email);
+                    i.putExtra("pass", pass);
+                    i.putExtra("year", year);
+                    i.putExtra("major", major);
                     startActivity(i);
                 }
             }

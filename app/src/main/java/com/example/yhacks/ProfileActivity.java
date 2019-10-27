@@ -1,6 +1,7 @@
 package com.example.yhacks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -18,6 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SharedPreferences sharedPref;
     private String emailAddress, userToken;
+    private Button logOff;
 
     public ProfileActivity() {
 
@@ -50,7 +52,14 @@ public class ProfileActivity extends AppCompatActivity {
     private void wireWidgets() {
         emailAddress = sharedPref.getString("userEmailAddress", "");
         userToken = sharedPref.getString(getString(R.string.token), "");
+        logOff = findViewById(R.id.logOut);
+    }
 
+    public void logOff(View view) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear().commit();
+        Intent i = new Intent(this, Login.class);
+        startActivity(i);
     }
 
 }

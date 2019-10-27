@@ -44,12 +44,7 @@ public class SetUpAccount extends AppCompatActivity {
         if(profileName == null || profileName.equals("")) {
             Toast.makeText(this, "Enter a valid profile name", Toast.LENGTH_SHORT).show();
         }
-        if(profileYear == null || profileYear.equals("")) {
-            Toast.makeText(this, "Enter a valid year", Toast.LENGTH_SHORT).show();
-        }
-        if(profileMajor == null || profileMajor.equals("")) {
-            Toast.makeText(this, "Enter a valid major", Toast.LENGTH_SHORT).show();
-        }
+
         Intent i = new Intent(SetUpAccount.this, CollegePicker.class);
         startActivity(i);
     }

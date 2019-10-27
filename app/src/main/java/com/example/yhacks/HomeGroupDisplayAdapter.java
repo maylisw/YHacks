@@ -49,8 +49,8 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
 //        for(int j = 0; j<group.getDate().length; j++) {
 //            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
 //        }
-        holder.schedule.setText(timeDateStr);
-        holder.location.setText(group.getLocation());
+//        holder.schedule.setText(timeDateStr);
+//        holder.location.setText(group.getLocation());
 
         if(holder.addCourseButton.isChecked()){
             holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
