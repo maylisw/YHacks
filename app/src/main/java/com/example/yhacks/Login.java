@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //todo use api request to call forgot passwor
+        //todo use api request to call forgot password
 //        forgotPassword.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
