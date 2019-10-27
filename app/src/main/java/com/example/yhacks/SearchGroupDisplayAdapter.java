@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
     @Override
     public void onBindViewHolder(@NonNull SearchGroupDisplayAdapter.MyViewHolder holder, int i) {
         StudyGroup group = studyGroups.get(i);
+        final MainActivity mainActivity = (MainActivity) context;
+        if(mainActivity.inMyGroups(group)){
+            holder.addCourseButton.setChecked(true);
+        }
         group.setTimeDate();
         String timeDateStr = "";
         Log.d("AG", "onBindViewHolder: "+group.getName());
@@ -45,6 +50,25 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         }
         holder.schedule.setText(timeDateStr);
         holder.location.setText(group.getLocation());
+
+        if(holder.addCourseButton.isChecked()){
+            holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
+        }
+
+        final int j = i;
+        holder.addCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleButton t = (ToggleButton) view;
+                if(t.isChecked()){ //already in group
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.toggle_circle_on));
+                    mainActivity.removeGroup(studyGroups.get(j));
+                } else {
+                    t.setBackgroundDrawable(t.getResources().getDrawable(R.drawable.toggle_circle_off));
+                    mainActivity.addGroup(studyGroups.get(j));
+                }
+            }
+        });
     }
 
 
@@ -55,6 +79,7 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView name, course, subject, schedule, location;
+        private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.groupName);
@@ -62,6 +87,7 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
             subject = itemView.findViewById(R.id.department);
             schedule = itemView.findViewById(R.id.schedule);
             location = itemView.findViewById(R.id.location);
+            addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }
 }

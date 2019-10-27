@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchFragment extends android.support.v4.app.Fragment {
     private SearchGroupDisplayAdapter searchGroupsDisplayAdapter;
@@ -18,8 +19,8 @@ public class SearchFragment extends android.support.v4.app.Fragment {
     private SearchView searchInput;
     private Context context;
     private View rootView;
-    private android.support.v7.widget.RecyclerView homeListRecyclerView;
-    private ArrayList<StudyGroup> studyGroupsList;
+    private android.support.v7.widget.RecyclerView serachListRecyclerView;
+    private List<StudyGroup> studyGroupsList;
 
     public SearchFragment() {
 
@@ -35,7 +36,9 @@ public class SearchFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_search, container, false);
         context = rootView.getContext();
-        getGroups();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        studyGroupsList = mainActivity.getMyGroups();
+        //getGroups();
         wireWidgets();
         return rootView;
     }
@@ -47,13 +50,13 @@ public class SearchFragment extends android.support.v4.app.Fragment {
 
     private void wireWidgets() {
         //searchInput = rootView.findViewById(R.id.searchInput);
-        homeListRecyclerView = rootView.findViewById(R.id.searchList);
+        serachListRecyclerView = rootView.findViewById(R.id.searchList);
         layoutManager = new GridLayoutManager(getActivity(), 1);
-        homeListRecyclerView.setLayoutManager(layoutManager);
-        homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        serachListRecyclerView.setLayoutManager(layoutManager);
+        serachListRecyclerView.setItemAnimator(new DefaultItemAnimator());
         searchGroupsDisplayAdapter = new SearchGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
-        homeListRecyclerView.setAdapter(searchGroupsDisplayAdapter);
-        registerForContextMenu(homeListRecyclerView);
+        serachListRecyclerView.setAdapter(searchGroupsDisplayAdapter);
+        registerForContextMenu(serachListRecyclerView);
     }
 
 }

@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private SharedPreferences sharedPref;
     private String emailAddress, userToken;
+    private List<StudyGroup> myGroups;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myGroups = new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(StudyBuddyApi.baseURL)
@@ -146,5 +149,32 @@ public class MainActivity extends AppCompatActivity {
         //launch new activity w/ intent
     }
 
+    public List<StudyGroup> getMyGroups(){
+        return myGroups;
+    }
 
+    public void addGroup(StudyGroup studyGroup){
+        myGroups.add(studyGroup);
+    }
+
+    public void removeGroup(StudyGroup studyGroup){
+        //todo make effcient lol
+        for(int i = 0; i < myGroups.size(); i++){
+            StudyGroup sg = myGroups.get(i);
+            if(sg.getId() == studyGroup.getId()){
+                myGroups.remove(i);
+            }
+        }
+    }
+
+    public boolean inMyGroups(StudyGroup group) {
+        //todo make effcient
+        for(int i = 0; i < myGroups.size(); i++){
+            StudyGroup sg = myGroups.get(i);
+            if(sg.getId() == group.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
