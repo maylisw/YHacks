@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = new HomeFragment();
                     break;
                 case R.id.navigation_search:
-                    //currentFragment = new SearchFragment();
+                    currentFragment = new SearchFragment();
                     break;
                 case R.id.navigation_friends:
                     currentFragment = new FriendsFragment();
@@ -91,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
+        thereIsUser = 1;
 
-        if(sharedPref.getInt(getString(R.string.user), 0) == 0){ //if no user
+        if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
             startActivity(i);
         } else {

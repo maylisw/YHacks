@@ -1,12 +1,19 @@
 package com.example.yhacks;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+
 public class StudyGroup {
 
+    private static final String TAG= "StudyGroup";
     private int id;
     private String name;
     private String course;
     private String subject;
     private String schedule;
+    private String[] time;
+    private String[] date;
     private String university;
     private String location;
     private int    userCount;
@@ -56,6 +63,26 @@ public class StudyGroup {
     public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
+
+    public void setTimeDate() {
+        time = new String[2];
+        date = new String[1];
+        time[0] = "3";
+        time[1] = "4";
+        date[0] = "M";
+//        String[] timeDate = schedule.split(", ");
+//        time = new String[timeDate.length/2];
+//        date = new String[timeDate.length/2];
+//        for(int i = 0; i<timeDate.length; i++) {
+//            String[] m = timeDate[i].split(" ");
+//            date[i] = m[0];
+//            time[i] = m[1];
+//        }
+    }
+
+    public String[] getTime() { return time; }
+
+    public String[] getDate() { return date; }
 
     public String getUniversity() {
         return university;

@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 public class HomeFragment extends android.support.v4.app.Fragment {
-    private GroupDisplayAdapter groupsDisplayAdapter;
+    private HomeGroupDisplayAdapter homeGroupDisplayAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Context context;
     private View rootView;
-    private android.support.v7.widget.RecyclerView homeListRecyclerView;
+    private android.support.v7.widget.RecyclerView searchListRecyclerView;
     private ArrayList<StudyGroup> studyGroupsList;
 
     public HomeFragment() {
@@ -40,17 +40,17 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
     private void getGroups() {
         studyGroupsList = new ArrayList<>();
-//        studyGroupsList.add(new StudyGroup());
+        studyGroupsList.add(new StudyGroup("erin", "1004", "COMS", "M 3:00 4:00, T 2:30 3:45", "Columbia", "Pupin 1029", 3, 7, 5));
     }
 
     private void wireWidgets() {
-        homeListRecyclerView = rootView.findViewById(R.id.homeList);
+        searchListRecyclerView = rootView.findViewById(R.id.homeList);
         layoutManager = new GridLayoutManager(getActivity(), 1);
-        homeListRecyclerView.setLayoutManager(layoutManager);
-        homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        groupsDisplayAdapter = new GroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
-        homeListRecyclerView.setAdapter(groupsDisplayAdapter);
-        registerForContextMenu(homeListRecyclerView);
+        searchListRecyclerView.setLayoutManager(layoutManager);
+        searchListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        homeGroupDisplayAdapter = new HomeGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
+        searchListRecyclerView.setAdapter(homeGroupDisplayAdapter);
+        registerForContextMenu(searchListRecyclerView);
     }
 
 }

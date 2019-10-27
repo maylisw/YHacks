@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
                 }
                 //todo call api login request
                 // updates stored app info
-                //todo update
+                //todo update w/ api recieved tokens
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.token), "TOKEN HERE");
                 editor.putString("userEmailAddress", emailInput.getText().toString());
@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //todo use api request to get code
+        //todo use api request to call forgot password
 //        forgotPassword.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

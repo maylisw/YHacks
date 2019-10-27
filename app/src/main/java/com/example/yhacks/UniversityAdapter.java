@@ -37,6 +37,7 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.My
         University uni = universities.get(i);
         holder.name.setText(uni.getName());
         holder.city.setText(uni.getCity());
+
     }
 
 
