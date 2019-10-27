@@ -13,17 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    currentFragment = new HomeFragment();
+                    if(myGroups.size() == 0){
+                        currentFragment = new EmptyGroupsFragment();
+                    } else {
+                        currentFragment = new HomeFragment();
+                    }
                     break;
                 case R.id.navigation_search:
                     currentFragment = new SearchFragment();
@@ -65,16 +68,54 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myGroups = new ArrayList<>();
+        context = this;
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(StudyBuddyApi.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
+
+        Call<User> call = api.registerUser("helllojoe819@gmail.com", "Maylis", "SEAS", "grrr", "grrr", "CS", "2023");
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("Stuff", "onResponse: "+response);
+                Log.d("Stuff", "onResponse: "+response.body().getAuthToken());
+               // if(response.body().getAuthToken() == null){
+                    Toast.makeText(context, "Sorry the authentication did not work please try again", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(this, CreateAccount.class);
+//                    startActivity(i);
+//                } else {
+//                    SharedPreferences.Editor editor = sharedPref.edit();
+//                    editor.putString(getString(R.string.token), response.body().getAuthToken());
+//                    editor.putString("userEmailAddress", response.body().getEmail());
+//                    editor.putString(getString(R.string.name), response.body().getName());
+//                    editor.putInt(getString(R.string.user), 1); //means there is a saved user
+//                    editor.commit();
+//
+//                    Intent i = new Intent(this, MainActivity.class);
+//                    startActivity(i);
+//                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG);
+            }
+        });
+
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
-
+        thereIsUser = 1;
         if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
             startActivity(i);
@@ -88,7 +129,11 @@ public class MainActivity extends AppCompatActivity {
 
             toolbar = (Toolbar)findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            currentFragment = new HomeFragment();
+            if(myGroups.size() == 0){
+                currentFragment = new EmptyGroupsFragment();
+            } else {
+                currentFragment = new HomeFragment();
+            }
             fm = getSupportFragmentManager();
             fm.beginTransaction()
                     .replace(R.id.mainFragmentContainer, currentFragment)

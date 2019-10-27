@@ -153,9 +153,8 @@ public class User {
                 "needs_help_with='" + needsHelpWith + "'" +
                 "profile_picture='" + profilePicture + "'" +
                 "email='" + email + "'" +
-                "good_at='" + goodAt + "'" +
-                "password='" + password + "'" +
-                "password_confirmation='" + password_confirmation + "'" +
+                "major='" + major + "'" +
+                "year='" + year + "'" +
                 "}";
     }
 }
