@@ -84,10 +84,10 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
         public MyViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            course = itemView.findViewById(R.id.year);
+            course = itemView.findViewById(R.id.course);
             subject = itemView.findViewById(R.id.department);
-//            schedule = itemView.findViewById(R.id.schedule);
-//            location = itemView.findViewById(R.id.location);
+            schedule = itemView.findViewById(R.id.schedule);
+            location = itemView.findViewById(R.id.location);
             addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }

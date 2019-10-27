@@ -35,8 +35,8 @@ public class FriendGroupDisplayAdapter extends RecyclerView.Adapter<FriendGroupD
     public void onBindViewHolder(@NonNull FriendGroupDisplayAdapter.MyViewHolder holder, int i) {
         User friend = friends.get(i);
         holder.name.setText(friend.getName());
-        //holder.year.setText(friend.getYear());
-        //holder.major.setText(friend.getMajor());
+        holder.year.setText(friend.getYear());
+        holder.major.setText(friend.getMajor());
         holder.goodAt.setText(friend.getGoodAt());
     }
 
@@ -52,6 +52,8 @@ public class FriendGroupDisplayAdapter extends RecyclerView.Adapter<FriendGroupD
             super(itemView);
             name = itemView.findViewById(R.id.friendName);
             goodAt = itemView.findViewById(R.id.goodAt);
+            year = itemView.findViewById(R.id.year);
+            major = itemView.findViewById(R.id.major);
         }
     }
 }
