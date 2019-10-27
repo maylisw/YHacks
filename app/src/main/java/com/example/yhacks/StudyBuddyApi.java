@@ -25,9 +25,11 @@ public interface StudyBuddyApi {
             @Field("name") String name,
             @Field("university") String university,
             @Field("password") String password,
-            @Field("password_confirmation") String passwordConfirmation
+            @Field("password_confirmation") String passwordConfirmation,
+            @Field("major") String major,
+            @Field("year") String year
     );
-    
+
 
     @FormUrlEncoded
     @POST("sessions")
