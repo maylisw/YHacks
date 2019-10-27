@@ -2,7 +2,6 @@ package com.example.yhacks;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,9 +46,9 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
         holder.name.setText(group.getName());
         holder.course.setText(group.getCourse());
         holder.subject.setText(group.getSubject());
-        for(int j = 0; j<group.getDate().length; j++) {
-            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
-        }
+//        for(int j = 0; j<group.getDate().length; j++) {
+//            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
+//        }
         holder.schedule.setText(timeDateStr);
         holder.location.setText(group.getLocation());
 
