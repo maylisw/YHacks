@@ -19,4 +19,7 @@
     <string name="user">isThereAUser?</string>
     <string name="name">Name of User</string>
     <string name="empty_groups_message">You have no groups, please use the search or create tabs to join groups</string>
+    <string name="major">major</string>
+    <string name="year">year</string>
+    <string name="college">college</string>
 </resources>

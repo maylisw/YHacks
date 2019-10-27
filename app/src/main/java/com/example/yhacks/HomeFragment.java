@@ -19,7 +19,6 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     private Context context;
     private View rootView;
     private android.support.v7.widget.RecyclerView homeListRecyclerView;
-    private ArrayList<StudyGroup> studyGroupsList;
 
     public HomeFragment() {
 
@@ -35,47 +34,10 @@ public class HomeFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
         context = rootView.getContext();
-        getGroups();
         wireWidgets();
         return rootView;
     }
 
-    private void getGroups() {
-        studyGroupsList = new ArrayList<>();
-        studyGroupsList.add(new StudyGroup(
-                "Introduction to Computer Science Midterm",
-                "1004",
-                "COMS",
-                "M 3:00 4:00, T 2:30 3:45",
-                "Columbia",
-                "Pupin 1029",
-                3,
-                7,
-                5)
-        );
-        studyGroupsList.add(new StudyGroup(
-                "Physics Homework",
-                "1601",
-                "PHYS",
-                "W 3:00 4:00, TH 2:30 3:45",
-                "Columbia",
-                "Butler 1029",
-                3,
-                7,
-                5)
-        );
-        studyGroupsList.add(new StudyGroup(
-                "Chemistry Quiz",
-                "1400",
-                "CHEM",
-                "F 3:00 4:00, S 2:30 3:45",
-                "Columbia",
-                "Havermeyer 109",
-                3,
-                7,
-                5)
-        );
-    }
 
     private void wireWidgets() {
         homeListRecyclerView = rootView.findViewById(R.id.homeList);
@@ -84,7 +46,9 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         homeListRecyclerView.setLayoutManager(layoutManager);
         homeListRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        homeGroupDisplayAdapter = new HomeGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
+        MainActivity activity = (MainActivity) getActivity();
+
+        homeGroupDisplayAdapter = new HomeGroupDisplayAdapter(((MainActivity) getActivity()).getMyGroups(), getContext()); //todo update with other info to be passed (likely the list of groups)
         homeListRecyclerView.setAdapter(homeGroupDisplayAdapter);
 
         homeListRecyclerView.addOnItemTouchListener(

@@ -21,6 +21,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myGroups = new ArrayList<>();
+        fillMyGroups();
         friends = new ArrayList<>();
 
         sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         int thereIsUser = sharedPref.getInt(getString(R.string.user), 0);
-        thereIsUser = 1;
         if(thereIsUser == 0){ //if no user
             Intent i = new Intent(this, Login.class);
             startActivity(i);
@@ -102,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.mainFragmentContainer, currentFragment)
                     .commit();
         }
+
+    }
+
+    private void fillMyGroups() {
+
 
     }
 

@@ -37,7 +37,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
         rootView = inflater.inflate(R.layout.fragment_search, container, false);
         context = rootView.getContext();
         MainActivity mainActivity = (MainActivity) getActivity();
-        studyGroupsList = mainActivity.getMyGroups();
+        studyGroupsList = new ArrayList<>();
         getGroups();
         wireWidgets();
         return rootView;

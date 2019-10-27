@@ -61,34 +61,14 @@ public class Login extends AppCompatActivity {
                 if(passwordInput == null || passwordInput.equals((""))) {
                     Toast.makeText(Login.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
                 }
-                 Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(StudyBuddyApi.baseURL)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
-                StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("userEmailAddress", emailInput.getText().toString());
+                editor.putInt(getString(R.string.user), 1); //means there is a saved user
+                editor.commit();
 
-                Call<User> call = api.login(emailInput.getText().toString(), passwordInput.getText().toString());
-                call.enqueue(new Callback<User>() {
-
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString(getString(R.string.token), response.body().getAuthToken());
-                        editor.putString("userEmailAddress", response.body().getEmail());
-                        editor.putString(getString(R.string.name), response.body().getName());
-                        editor.putInt(getString(R.string.user), 1); //means there is a saved user
-                        editor.commit();
-
-                        //Starts Main Activity
-                        Intent i = new Intent(Login.this, MainActivity.class);
-                        startActivity(i);
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t){
-                        Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                //Starts Main Activity
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
 
             }
         });

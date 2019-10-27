@@ -66,7 +66,6 @@ public class CollegePicker extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         universityList = new ArrayList<>();
-        //todo make query to get list of UNis
         universityList.add(new University(
                 "Columbia University in the City of New York",
                 "New York, New York",
@@ -117,47 +116,22 @@ public class CollegePicker extends AppCompatActivity {
                 if(selected == -1 && (uniName.getText().toString() == "" || uniCity.getText().toString() == "")){
                     Toast.makeText(context, "Please either enter a university name & city or select your university", Toast.LENGTH_SHORT).show();
                 } else {
-//                    if(selected == -1){
-//                        university = uniName.getText().toString();
-//                        Log.d("stuff", "onClick: "+uniName.getText().toString());
-//                        //todo asyn callback adding univeristies using unicity and uniname
-//                    } else {
+                    if(selected == -1){
+                        university = uniName.getText().toString();
+                    } else {
                         university = universityList.get(selected).getName();
-                   // }
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(StudyBuddyApi.baseURL)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    StudyBuddyApi api = retrofit.create(StudyBuddyApi.class);
+                    }
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("userEmailAddress", email);
+                    editor.putString(getString(R.string.name), name);
+                    editor.putString(getString(R.string.major), major);
+                    editor.putString(getString(R.string.year), year);
+                    editor.putString(getString(R.string.college), "");
+                    editor.putInt(getString(R.string.user), 1); //means there is a saved user
+                    editor.commit();
 
-                    Call<User> call = api.registerUser(email, name, university, password, password, major, year);
-                    call.enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            Log.d("Stuff", "onResponse: "+response);
-                            Log.d("Stuff", "onResponse: "+response.body().getAuthToken());
-                            if(response.body().getAuthToken() == null){
-                                Toast.makeText(CollegePicker.this, "Sorry the authentication did not work please try again", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(context, CreateAccount.class);
-                                startActivity(i);
-                            } else {
-                                SharedPreferences.Editor editor = sharedPref.edit();
-                                editor.putString(getString(R.string.token), response.body().getAuthToken());
-                                editor.putString("userEmailAddress", response.body().getEmail());
-                                editor.putString(getString(R.string.name), response.body().getName());
-                                editor.putInt(getString(R.string.user), 1); //means there is a saved user
-                                editor.commit();
-
-                                Intent i = new Intent(context, MainActivity.class);
-                                startActivity(i);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(CollegePicker.this, t.getMessage(), Toast.LENGTH_LONG);
-                        }
-                    });
+                    Intent i = new Intent(context, MainActivity.class);
+                    startActivity(i);
                 }
             }
         });

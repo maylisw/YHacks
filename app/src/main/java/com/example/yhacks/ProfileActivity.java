@@ -18,8 +18,9 @@ import android.widget.ImageView;
 public class ProfileActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SharedPreferences sharedPref;
-    private String emailAddress, userToken;
+    private String emailAddress, userName, year, major, college;
     private Button logOff;
+    private EditText profileName, profileMajor, profileYear, profileCollege;
 
     public ProfileActivity() {
 
@@ -51,7 +52,20 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void wireWidgets() {
         emailAddress = sharedPref.getString("userEmailAddress", "");
-        userToken = sharedPref.getString(getString(R.string.token), "");
+        userName = sharedPref.getString(getString(R.string.name), "");
+        year = sharedPref.getString(getString(R.string.year), "");
+        major = sharedPref.getString(getString(R.string.major), "");
+        college = sharedPref.getString(getString(R.string.college), "");
+
+        profileName = findViewById(R.id.profileName);
+        profileName.setText(userName,null );
+        profileMajor = findViewById(R.id.profileMajor);
+        profileMajor.setText(major, null);
+        profileYear = findViewById(R.id.profileYear);
+        profileYear.setText(year,null);
+        profileCollege = findViewById(R.id.profileSchool);
+        profileCollege.setText(college,null);
+
         logOff = findViewById(R.id.logOut);
     }
 
