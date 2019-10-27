@@ -19,6 +19,7 @@ import java.util.List;
 public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupDisplayAdapter.MyViewHolder> {
     private List<StudyGroup> studyGroups;
     private Context context;
+    private static final String TAG = "HomeGroupDisplayAdapter";
 
     public SearchGroupDisplayAdapter(List<StudyGroup> group, Context context) {
         this.studyGroups = group;
@@ -45,11 +46,11 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         holder.name.setText(group.getName());
         holder.course.setText(group.getCourse());
         holder.subject.setText(group.getSubject());
-        for(int j = 0; j<group.getDate().length; j++) {
-            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
-        }
-//        holder.schedule.setText(timeDateStr);
-//        holder.location.setText(group.getLocation());
+//        for(int j = 0; j<group.getDate().length; j++) {
+//            timeDateStr += group.getDate()[j] + " " + group.getTime()[j*2] + group.getTime()[(j*2) + 1];
+//        }
+        holder.schedule.setText(timeDateStr);
+        holder.location.setText(group.getLocation());
 
         if(holder.addCourseButton.isChecked()){
             holder.addCourseButton.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.toggle_circle_off));
@@ -82,11 +83,11 @@ public class SearchGroupDisplayAdapter extends RecyclerView.Adapter<SearchGroupD
         private ToggleButton addCourseButton;
         public MyViewHolder(View itemView) {
             super(itemView);
-            //name = itemView.findViewById(R.id.friendName);
-            course = itemView.findViewById(R.id.year);
+            name = itemView.findViewById(R.id.name);
+            course = itemView.findViewById(R.id.course);
             subject = itemView.findViewById(R.id.department);
-            //schedule = itemView.findViewById(R.id.schedule);
-            //location = itemView.findViewById(R.id.location);
+            schedule = itemView.findViewById(R.id.schedule);
+            location = itemView.findViewById(R.id.location);
             addCourseButton = itemView.findViewById(R.id.add_study_group);
         }
     }

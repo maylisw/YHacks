@@ -19,7 +19,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
     private SearchView searchInput;
     private Context context;
     private View rootView;
-    private android.support.v7.widget.RecyclerView serachListRecyclerView;
+    private android.support.v7.widget.RecyclerView searchListRecyclerView;
     private List<StudyGroup> studyGroupsList;
 
     public SearchFragment() {
@@ -38,7 +38,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
         context = rootView.getContext();
         MainActivity mainActivity = (MainActivity) getActivity();
         studyGroupsList = mainActivity.getMyGroups();
-        //getGroups();
+        getGroups();
         wireWidgets();
         return rootView;
     }
@@ -50,13 +50,13 @@ public class SearchFragment extends android.support.v4.app.Fragment {
 
     private void wireWidgets() {
         //searchInput = rootView.findViewById(R.id.searchInput);
-        serachListRecyclerView = rootView.findViewById(R.id.searchList);
+        searchListRecyclerView = rootView.findViewById(R.id.searchList);
         layoutManager = new GridLayoutManager(getActivity(), 1);
-        serachListRecyclerView.setLayoutManager(layoutManager);
-        serachListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        searchListRecyclerView.setLayoutManager(layoutManager);
+        searchListRecyclerView.setItemAnimator(new DefaultItemAnimator());
         searchGroupsDisplayAdapter = new SearchGroupDisplayAdapter(studyGroupsList, getContext()); //todo update with other info to be passed (likely the list of groups)
-        serachListRecyclerView.setAdapter(searchGroupsDisplayAdapter);
-        registerForContextMenu(serachListRecyclerView);
+        searchListRecyclerView.setAdapter(searchGroupsDisplayAdapter);
+        registerForContextMenu(searchListRecyclerView);
     }
 
 }
