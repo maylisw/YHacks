@@ -57,11 +57,11 @@ public class HomeGroupDisplayAdapter extends RecyclerView.Adapter<HomeGroupDispl
         private TextView name, course, subject, schedule, location;
         public MyViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.groupName);
-            course = itemView.findViewById(R.id.classTitle);
+            name = itemView.findViewById(R.id.friendName);
+            course = itemView.findViewById(R.id.year);
             subject = itemView.findViewById(R.id.department);
-            schedule = itemView.findViewById(R.id.schedule);
-            location = itemView.findViewById(R.id.location);
+            schedule = itemView.findViewById(R.id.major);
+            location = itemView.findViewById(R.id.goodAt);
         }
     }
 }
