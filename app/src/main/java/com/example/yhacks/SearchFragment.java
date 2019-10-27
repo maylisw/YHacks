@@ -76,7 +76,7 @@ public class SearchFragment extends android.support.v4.app.Fragment {
                 "Havermeyer 109",
                 3,
                 7,
-                5)
+                5)//s
         );
     }
 
