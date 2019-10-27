@@ -42,7 +42,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
 
         private void getGroups() {
             friendsList = new ArrayList<>();
-            friendsList.add(new User("erin", "Columbia", "1004, 2342", "COMS", "multi", "img", "eem23234", "23242", 2));
+            //friendsList.add(new User("erin", "Columbia", "1004, 2342", "COMS", "multi", "img", "eem23234", "23242", 2));
         }
 
         private void wireWidgets() {
